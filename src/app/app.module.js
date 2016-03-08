@@ -3,5 +3,5 @@
 (function () {
     'use strict';
 
-    var pandoraApp = angular.module("pandoraApp", ["ngRoute"]);
+    angular.module("pandoraApp", ["ngRoute"]);
 })();

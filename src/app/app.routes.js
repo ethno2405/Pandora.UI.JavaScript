@@ -15,7 +15,7 @@
             .when("/projects", {
                 templateUrl: "app/components/projects/projects.html",
                 controller: "ProjectsController",
-                requireToken: true
+                //requireToken: true
             })
             .otherwise({
                 redirectTo: '/login'

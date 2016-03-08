@@ -3,11 +3,17 @@
 (function () {
     'use strict';
 
-    var pandoraApp = angular.module("pandoraApp");
+    angular.module("pandoraApp")
+        .controller("LoginController", ["$scope", "$location", function ($scope, $location) {
 
-    pandoraApp.controller("LoginController", function ($scope) {
+            $scope.model = {};
+            $scope.model.username = "";
+            $scope.model.password = "";
+            $scope.model.rememberMe = false;
 
-        $scope.model = "asdf";
+            $scope.signIn = function (model) {
+                $location.path("/projects");
+            };
 
-    });
+        }]);
 })();
