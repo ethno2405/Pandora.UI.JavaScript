@@ -1,61 +1,20 @@
 ﻿
-<section ng-controller="LoginController as login" class="body-sign">
-    <div class="center-sign">
-        <a href="/" class="logo pull-left">
-            <img src="/assets/img/logo.png" height="54" alt="Porto Admin" />
+<style>
+    #login-buttons {
+        margin-top: 20%;
+    }
+</style>
+
+<section ng-controller="LoginController" class="body-sign">
+    <div id="login-buttons" class="center">
+        <a href="/" class="">
+            <img src="/assets/img/logo.png" height="100" alt="Porto Admin" />
         </a>
 
-        <div class="panel panel-sign">
-            <div class="panel-title-sign mt-xl text-right">
-                <h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Sign In</h2>
-            </div>
-            <div class="panel-body">
-                <form novalidate>
-                    <div class="form-group mb-lg">
-                        <label>Username</label>
-                        <div class="input-group input-group-icon">
-                            <input name="username" type="text" class="form-control input-lg" ng-model="model.username" />
-                            <span class="input-group-addon">
-                                <span class="icon icon-lg">
-                                    <i class="fa fa-user"></i>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
+        <h1 class="text-dark">Pandora admin panel</h1>
 
-                    <div class="form-group mb-lg">
-                        <div class="clearfix">
-                            <label class="pull-left">Password</label>
-                        </div>
-                        <div class="input-group input-group-icon">
-                            <input name="pwd" type="password" class="form-control input-lg" ng-model="model.password" />
-                            <span class="input-group-addon">
-                                <span class="icon icon-lg">
-                                    <i class="fa fa-lock"></i>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="checkbox-custom checkbox-default">
-                                <input id="RememberMe" name="rememberme" type="checkbox" ng-model="model.rememberMe" />
-                                <label for="RememberMe">Remember Me</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 text-right">
-                            <button type="submit" class="btn btn-primary hidden-xs" ng-click="signIn(model)">Sign In</button>
-                            <button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" ng-click="signIn(model)">Sign In</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <a class="btn btn-lg btn-block btn-gplus mb-md ml-xs mr-xs" ng-click="googleSignIn()">Sign in with Google</a>
 
         <p class="text-center text-muted mt-md mb-md">&copy; Copyright 2014. All Rights Reserved.</p>
     </div>
-    <span>{{model.username}}</span>
-    <span>{{model.password}}</span>
-    <span>{{model.rememberMe}}</span>
 </section>
