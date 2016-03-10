@@ -4,7 +4,7 @@
     'use strict';
 
     angular.module("pandoraApp")
-        .controller("SignInGoogleController", ["$location", "$routeParams", "SignInService", function ($location, $routeParams, SignInService) {
+        .controller("SignInController", ["$location", "$routeParams", "SignInService", function ($location, $routeParams, SignInService) {
 
             var idToken = $routeParams.id_token;
 
@@ -14,6 +14,8 @@
             }
 
             SignInService.setUser(idToken);
+
+            $location.search({});
             $location.path("/projects");
         }]);
 })();
