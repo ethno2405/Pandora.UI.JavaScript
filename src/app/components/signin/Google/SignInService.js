@@ -11,6 +11,10 @@
                 window.localStorage[idTokenKey] = user;
             };
 
+            this.getUser = function () {
+                return window.localStorage[idTokenKey];
+            };
+
             this.isLoggedIn = function () {
                 var user = window.localStorage[idTokenKey];
                 return (user) ? true : false;

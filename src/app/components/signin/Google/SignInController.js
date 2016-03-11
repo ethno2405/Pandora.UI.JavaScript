@@ -6,6 +6,7 @@
     angular.module("pandoraApp")
         .controller("SignInController", ["$location", "$routeParams", "SignInService", function ($location, $routeParams, SignInService) {
 
+            debugger;
             var idToken = $routeParams.id_token;
 
             if (!idToken) {
