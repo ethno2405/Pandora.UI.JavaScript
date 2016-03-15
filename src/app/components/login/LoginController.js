@@ -4,18 +4,14 @@
     'use strict';
 
     angular.module("pandoraApp")
-        .controller("LoginController", ["$scope", "$location", "LoginService", function ($scope, $location, LoginService) {
-
-            var idToken = window.localStorage["id_token"];
-
-            if (idToken) {
-                $location.path("/projects");
-                return;
-            }
-
+        .controller("LoginController", ["$scope", "$location", "GoogleAuthService", function ($scope, $location, GoogleAuthService) {
             $scope.googleSignIn = function () {
-                LoginService.getToken();
+                GoogleAuthService.authorize()
+                    .then(function (success) {
+                        if (success) {
+                            $location.path("/projects");
+                        }
+                    });
             };
-
         }]);
 })();
