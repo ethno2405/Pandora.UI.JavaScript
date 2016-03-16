@@ -37,6 +37,8 @@
 
     <div ng-view></div>
     <!--<script data-main="main.js" src="require.js"></script>-->
+    <!--third party-->
+    <script src="app/components/auth/google/google-oauth2-api.js"></script>
 
     <script src="angular/angular.js" type="text/javascript"></script>
     <script src="angular/angular-route.js"></script>
@@ -44,11 +46,8 @@
     <script src="app/app.routes.js" type="text/javascript"></script>
     <script src="app/app.configuration.js"></script>
 
-    <!--third party-->
-    <script src="app/components/auth/google/google-oauth2-api.js"></script>
-
     <!--services-->
-    <script src="app/components/auth/AuthService.js"></script>
+    <script src="app/components/auth/UrlStore.js"></script>
     <script src="app/components/auth/google/GoogleAuthService.js"></script>
 
     <!--controllers-->

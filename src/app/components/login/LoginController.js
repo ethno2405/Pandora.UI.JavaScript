@@ -4,12 +4,17 @@
     'use strict';
 
     angular.module("pandoraApp")
-        .controller("LoginController", ["$scope", "$location", "GoogleAuthService", function ($scope, $location, GoogleAuthService) {
+        .controller("LoginController", ["$scope", "$location", "GoogleAuthService", "UrlStore", function ($scope, $location, GoogleAuthService, UrlStore) {
+
+            if (GoogleAuthService.getToken()) {
+                $location.path("/projects");
+            }
+
             $scope.googleSignIn = function () {
                 GoogleAuthService.authorize()
                     .then(function (success) {
                         if (success) {
-                            $location.path("/projects");
+                            $location.path(UrlStore.getUrl());
                         }
                     });
             };

@@ -21,7 +21,6 @@
             var attempts = 0;
 
             function handleAuthResult(deferred, result) {
-                debugger;
                 if (attempts > 5) {
                     attempts = 0;
                     deferred.reject(false);
