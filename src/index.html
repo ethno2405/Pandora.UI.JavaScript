@@ -21,6 +21,9 @@
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8" />
 
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="207129669458-961vrfl89vptuuv2v696hhk5udqt5ves.apps.googleusercontent.com.apps.googleusercontent.com">
+
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -38,13 +41,15 @@
     <div ng-view></div>
     <!--<script data-main="main.js" src="require.js"></script>-->
     <!--third party-->
-    <script src="app/components/auth/google/google-oauth2-api.js"></script>
+    <!--<script src="app/components/auth/google/google-oauth2-api.js"></script>-->
+    <script src="app/components/auth/google/platform.js"></script>
 
     <script src="angular/angular.js" type="text/javascript"></script>
     <script src="angular/angular-route.js"></script>
+
+    <script src="app/app.configuration.js"></script>
     <script src="app/app.module.js" type="text/javascript"></script>
     <script src="app/app.routes.js" type="text/javascript"></script>
-    <script src="app/app.configuration.js"></script>
 
     <!--services-->
     <script src="app/components/auth/UrlStore.js"></script>

@@ -11,7 +11,9 @@
         };
 
         this.getUrl = function () {
-            return savedUrl;
+            var url = savedUrl;
+            savedUrl = null;
+            return url;
         };
     };
 

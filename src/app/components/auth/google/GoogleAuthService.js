@@ -1,4 +1,4 @@
-﻿/// <reference path="google-oauth2-api.js" />
+﻿/// <reference path="platform.js" />
 /// <reference path="../../../../angular/angular.js" />
 /// <reference path="../../../app.configuration.js" />
 
@@ -8,8 +8,16 @@
     angular.module("pandoraApp")
         .service("GoogleAuthService", ["$location", "$q", function ($location, $q) {
 
-            gapi.client.setApiKey(configuration.apiKey);
 
+            var asdf = gapi.signin2.render("google-login", {
+                'scope': 'email',
+                'width': 200,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark'
+            });
+
+            debugger;
             function authorize(isImmediate, handler) {
                 gapi.auth.authorize({
                     client_id: configuration.clientId,
@@ -50,6 +58,10 @@
 
             this.getToken = function () {
                 return gapi.auth.getToken();
+            };
+
+            this.signOut = function () {
+                gapi.auth.signOut();
             };
         }]);
 })();

@@ -5,6 +5,7 @@
 
     var pandoraApp = angular.module("pandoraApp");
 
+
     pandoraApp.config(["$routeProvider",
         function ($routeProvider) {
             $routeProvider
@@ -19,24 +20,55 @@
                 })
                 .otherwise("/login");
         }])
-        .run(function ($rootScope, $location, UrlStore, GoogleAuthService, $route) {
+        .factory("httpInterceptor", ["$location", "GoogleAuthService", function ($location, GoogleAuthService) {
+            return {
+                request: function (config) {
+                    //var token = GoogleAuthService.getToken();
+                    //if (token) {
+                    //    config.headers.Authorization = "Bearer " + token.id_token;
+                    //}
 
-            var routesOpenToPublic = [];
-            angular.forEach($route.routes, function (route, path) {
+                    return config;
+                },
 
-                route.publicAccess && (routesOpenToPublic.push(path));
-            });
+                requestError: function (config) {
+                    return config;
+                },
 
-            $rootScope.$on('$routeChangeStart', function (event, nextLoc, currentLoc) {
-                var closedToPublic = (-1 === routesOpenToPublic.indexOf($location.path()));
-                if (closedToPublic && !GoogleAuthService.getToken()) {
+                response: function (res) {
+                    return res;
+                },
 
-                    if (nextLoc && nextLoc.originalPath !== "/login") {
-                        UrlStore.saveUrl(nextLoc.originalPath);
+                responseError: function (res) {
+                    if (res.status === 401) {
+                        $location.path("/login");
+                        return;
                     }
 
-                    $location.path('/login');
+                    return res;
                 }
-            });
-        });
+            }
+        }])
+        .config(["$httpProvider", function ($httpProvider) {
+            $httpProvider.interceptors.push('httpInterceptor');
+        }])
+        .run(["$rootScope", "$location", "UrlStore", "GoogleAuthService", "$route",
+            function ($rootScope, $location, UrlStore, GoogleAuthService, $route) {
+
+                var routesOpenToPublic = [];
+                angular.forEach($route.routes, function (route, path) {
+                    route.publicAccess && (routesOpenToPublic.push(path));
+                });
+
+                $rootScope.$on('$routeChangeStart', function (event, nextLoc, currentLoc) {
+                    var closedToPublic = (-1 === routesOpenToPublic.indexOf($location.path()));
+                    if (closedToPublic && !GoogleAuthService.getToken()) {
+                        if (nextLoc && nextLoc.originalPath !== "/login") {
+                            UrlStore.saveUrl(nextLoc.originalPath);
+                        }
+
+                        $location.path('/login');
+                    }
+                });
+            }]);
 })();
